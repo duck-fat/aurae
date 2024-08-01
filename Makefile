@@ -121,12 +121,10 @@ ifeq ($(uid), 0)
 	mkdir -p /etc/aurae/pki
 	cp -v pki/* /etc/aurae/pki
 else
-	sudo -E mkdir -p /etc/aurae/pki
-	sudo -E cp -v pki/* /etc/aurae/pki
+	# use project /pki folder with auraed tests
 endif
 	@echo "Install PKI Auth Material [/etc/aurae]"
 
-.PHONY: config
 config: certs ## Set up default config
 	mkdir -p $(HOME)/.aurae
 	cp -v auraescript/default.config.toml $(HOME)/.aurae/config

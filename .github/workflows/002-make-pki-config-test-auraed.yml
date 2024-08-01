@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0                                          #
 # ---------------------------------------------------------------------------- #
 #
-name: "Tester (101) [aurae-builder:builder-latest] [auraed]"
+name: "(002) make pki config auraed-test"
 on:
   push:
     branches: main
@@ -48,7 +48,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: 100-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: 002-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             100-${{ runner.os }}-cargo-
       - name: Cargo Test [make pki config test]

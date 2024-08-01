@@ -1,6 +1,4 @@
 # ---------------------------------------------------------------------------- #
-#                                                                              #
-#                +--------------------------------------------+                #
 #                |   █████╗ ██╗   ██╗██████╗  █████╗ ███████╗ |                #
 #                |  ██╔══██╗██║   ██║██╔══██╗██╔══██╗██╔════╝ |                #
 #                |  ███████║██║   ██║██████╔╝███████║█████╗   |                #
@@ -10,12 +8,9 @@
 #                +--------------------------------------------+                #
 #                                                                              #
 #                         Distributed Systems Runtime                          #
-#                                                                              #
 # ---------------------------------------------------------------------------- #
-#                                                                              #
-#  Copyright 2022 - 2024, the Aurae contributors                               #
-#  SPDX-License-Identifier: Apache-2.0                                         #
-#                                                                              #
+# Copyright 2022 - 2024, the aurae contributors                                #
+# SPDX-License-Identifier: Apache-2.0                                          #
 # ---------------------------------------------------------------------------- #
 #
 # This is the main compile time check for Aurae.
@@ -29,7 +24,7 @@
 #
 # When this build passes we should have a "clean cargo" output!
 #
-name: "Tester (001) [ubuntu:latest] [auraed]"
+name: "Basic (001) [ubuntu:latest] [auraed]"
 on:
   push:
     branches: main
@@ -92,8 +87,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y musl-tools
       - name: Cargo build, lint, test [make test]
-        # This should remain the only command we execute as this matches the title of the file.
-        # The goal is for this to be easy to find from the GitHub dashboard.
-        # Instead of adding more commands here, consider another make target or a new YAML file
-        # named with a good name.
-        run: make auraed-test
+        # This should remain the only command we execute as this matches the
+        # title of the file. The goal is for this to be easy to find from the
+        # GitHub dashboard. Instead of adding more commands here, consider
+        # another make target or a new YAML file named with a good name.
+        run: make pki auraed-test
