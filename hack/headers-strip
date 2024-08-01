@@ -19,8 +19,7 @@
 function info() {
 	green='[0;32m'
 	nc='[0m'
-	printf "${green}%s${nc}
-" "$1"
+	printf "${green}%s${nc}\n" "$1"
 }
 
 # This script assumes running from the top level directory within a Makefile
@@ -51,8 +50,7 @@ function strip_script_header() {
   # account for scripts with shebangs
   if [ "$FIRST_LINE" = '#!/usr/bin/env bash' ]; then
       HEADER_LINES=30
-      expected=$(printf "%s
-%s" '#!/usr/bin/env bash' "$expected")
+      expected=$(printf "%s\n%s" '#!/usr/bin/env bash' "$expected")
   else
       HEADER_LINES=29
   fi
@@ -60,12 +58,12 @@ function strip_script_header() {
   if [ "$FILE_HEADER" = "$expected" ]; then
     info "  -> [MUTATING SOURCE FILE] Stripping header: $file"
     # strip the header from the source
-    tail -n +$((HEADER_LINES + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+    tail -n +$((HEADER_LINES + 1)) "$file" > "${file}.tmp" \
+      && mv "${file}.tmp" "$file"
     if [ "$HEADER_LINES" -eq 30 ]; then
       # readd shebang
       SRC=$(cat "$file")
-      echo -e "#!/usr/bin/env bash
-$SRC" > "${file}.tmp" && mv "${file}.tmp" "$file"
+      printf "%s\n%s" "#!/usr/bin/env bash" "$SRC" > "$file"
     fi
   else
     info "  -> [SKIPPING SOURCE FILE] $file"
